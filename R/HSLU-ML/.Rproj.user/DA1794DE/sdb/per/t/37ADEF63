@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# HSLU Demo of the k-Means clustering using the Iris dataset\n\nhead(iris)\n\nlibrary(ggplot2)\nggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) + geom_point()\n\n# Show the docu for kmeans\n?kmeans\n\nset.seed(418)\n# Build  the k means model. Note that the cluster number k is predefined\nirisCluster <- kmeans(iris[, 3:4], centers=3, nstart = 200)\n# Show the model summary\nirisCluster\n\n# Results in table format\ntable(irisCluster$cluster, iris$Species)\nirisCluster$centers\n\niris$cluster <- as.factor(irisCluster$cluster)\nggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = iris$cluster)) + geom_point()\n",
+    "created" : 1484066389029.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3290397382",
+    "id" : "37ADEF63",
+    "lastKnownWriteTime" : 1484302164,
+    "last_content_update" : 1484302164326,
+    "path" : "~/Development/HSLU-ML/kMeans.R",
+    "project_path" : "kMeans.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

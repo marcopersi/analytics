@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1528099814423.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2096025898",
+    "id" : "F26E138B",
+    "lastKnownWriteTime" : 1528099847,
+    "last_content_update" : 1528099847722,
+    "path" : "~/Work/armasuisse/Teaching/HSLU/2018/R_Scripts/HSLU_DataScience_II_RScripts/RMD/EWSHypothesis.Rmd",
+    "project_path" : "RMD/EWSHypothesis.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# HSLU Demo of the SVM method with random numbers\n\nn <- 150 # number of data points\np <- 2   # dimension\nsigma <- 1  # variance of the distribution\nmeanpos <- 0 # centre of the distribution of positive examples\nmeanneg <- 3 # centre of the distribution of negative examples\nnpos <- round(n/2) # number of positive examples\nnneg <- n-npos # number of negative examples\n\n# Generate the positive and negative examples\nxpos <- matrix(rnorm(npos*p,mean=meanpos,sd=sigma),npos,p)\nxneg <- matrix(rnorm(nneg*p,mean=meanneg,sd=sigma),npos,p)\nx <- rbind(xpos,xneg)\n# Generate the labels\ny <- matrix(c(rep(1,npos),rep(-1,nneg)))\n# Visualize the data\nplot(x,col=ifelse(y>0,1,2))\nlegend(\"topleft\",c('Positive','Negative'),col=seq(2),pch=1,text.col=seq(2))\n\n## Prepare a training (80%) and a test set (20%) ##\nntrain <- round(n*0.8) # number of training examples\ntindex <- sample(n,ntrain) # indices of training samples\nxtrain <- x[tindex,]\nxtest <- x[-tindex,]\nytrain <- y[tindex]\nytest <- y[-tindex]\nistrain=rep(0,n)\nistrain[tindex]=1\n# Visualize\nplot(x,col=ifelse(y>0,1,2),pch=ifelse(istrain==1,1,2))\nlegend(\"topleft\",c('Positive Train','Positive Test','Negative Train','Negative Test'),\n       col=c(1,1,2,2),pch=c(1,2,1,2),text.col=c(1,1,2,2))\n\n# Now we train a linear SVM with parameter C=100 on the training set # load the kernlab package\nlibrary(kernlab)\n# train the SVM\nsvp <- ksvm(xtrain,ytrain,type=\"C-svc\",kernel='vanilladot',C=100,scaled=c())\n# Look and understand what svp contains \n# General summary\nsvp\n# Attributes that you can access\nattributes(svp)\n# For example, the support vectors\nalpha(svp)\nalphaindex(svp)\nb(svp)\n# Use the built-in function to pretty-plot the classifier\nplot(svp,data=xtrain)\n\n\n## Predict with a SVM\n# Predict labels on test\nypred = predict(svp,xtest)\ntable(ytest,ypred)\n# Compute accuracy\nsum(ypred==ytest)/length(ytest)\n# Compute at the prediction scores\nypredscore = predict(svp,xtest,type=\"decision\")\n# Check that the predicted labels are the signs of the scores\ntable(ypredscore > 0,ypred)\n# Package to compute ROC curve, precision-recall etc...\nlibrary(ROCR)\npred <- prediction(ypredscore,ytest)\n# Plot ROC curve\nperf <- performance(pred, measure = \"tpr\", x.measure = \"fpr\")\nplot(perf)\n# Plot precision/recall curve\nperf <- performance(pred, measure = \"prec\", x.measure = \"rec\")\nplot(perf)\n# Plot accuracy as function of threshold\nperf <- performance(pred, measure = \"acc\")\nplot(perf)\n",
+    "created" : 1483713816053.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "763215520",
+    "id" : "DBE13E64",
+    "lastKnownWriteTime" : 1484069645,
+    "last_content_update" : 1484069645378,
+    "path" : "~/Downloads/SVM.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

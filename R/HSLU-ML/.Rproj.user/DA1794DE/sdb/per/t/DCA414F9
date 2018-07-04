@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# HSLU Demo k Nearest Neighbor (kNN) using the Iris dataset\niris\nsummary(iris)\n\n# All variables are in near ranges, so we assume normalization on data is not required\nstr(iris)\n# Factor variable is indexed in 5th position\ntable(iris$Species)\n# Percent values\nround(prop.table(table(iris$Species)) * 100,digits = 1)\n\n# Random splitting of iris data as 70% train and 30%test datasets\nind <- sample(2, nrow(iris), replace=TRUE, prob=c(0.7, 0.3))\ntrainData <- iris[ind==1,]\ntestData <- iris[ind==2,]\n\n# Removing factor variable from training and test datasets\ntrainData1 <- trainData[-5]\ntestData1 <- testData[-5]\n\n# Checking the dimensions of train and test datasets\ndim(trainData)\ndim(trainData1)\ndim(testData)\ndim(testData1)\n\n# Storing target variable for testing and training data\niris_train_labels <- trainData$Species \ndim(iris_train_labels)\nclass(iris_train_labels)\n\niris_test_labels <- testData$Species\ndim(iris_test_labels)\nclass(iris_test_labels)\n\n# Training a kNN-model on the data\n# Install.packages(\"class\") if necessary\nlibrary(class)\n# knn returns the predicted lables for test data set\niris_test_pred1 <- knn(train = trainData1, test = testData1, cl= iris_train_labels,k = 3,prob=TRUE) \n\n\n# Evaluating the model performance\n# Install.packages(\"gmodels\") if necessary\nlibrary(gmodels)\nCrossTable(x = iris_test_labels, y = iris_test_pred1,prop.chisq=FALSE) \n\n# \n#  \n#    Cell Contents\n# |-------------------------|\n# |                       N |\n# |           N / Row Total |\n# |           N / Col Total |\n# |         N / Table Total |\n# |-------------------------|\n# \n#  \n# Total Observations in Table:  48 \n# \n#  \n#                  | iris_test_pred1 \n# iris_test_labels |     setosa | versicolor |  virginica |  Row Total | \n# -----------------|------------|------------|------------|------------|\n#           setosa |         16 |          0 |          0 |         16 | \n#                  |      1.000 |      0.000 |      0.000 |      0.333 | \n#                  |      1.000 |      0.000 |      0.000 |            | \n#                  |      0.333 |      0.000 |      0.000 |            | \n# -----------------|------------|------------|------------|------------|\n#       versicolor |          0 |         17 |          2 |         19 | \n#                  |      0.000 |      0.895 |      0.105 |      0.396 | \n#                  |      0.000 |      1.000 |      0.133 |            | \n#                  |      0.000 |      0.354 |      0.042 |            | \n# -----------------|------------|------------|------------|------------|\n#        virginica |          0 |          0 |         13 |         13 | \n#                  |      0.000 |      0.000 |      1.000 |      0.271 | \n#                  |      0.000 |      0.000 |      0.867 |            | \n#                  |      0.000 |      0.000 |      0.271 |            | \n# -----------------|------------|------------|------------|------------|\n#     Column Total |         16 |         17 |         15 |         48 | \n#                  |      0.333 |      0.354 |      0.312 |            | \n# -----------------|------------|------------|------------|------------|\n# \n# \n\n# The top-left cell indicates the true negative results. \n# The bottom-right cell indicates the true positive results\n# The two examples in the lower-left cell are false negative results, which are wrongly predicted\n# The top-right cell would contain the false positive results\n\n\n# A total of 4 out of 51, or 8 percent of Species were incorrectly classified by the kNN classifier\n# therefore 92 percent accuracy:\n# 92% of accuracy is shown by the model: (17+14+16)/51 = 0.9215686\n\n",
+    "created" : 1483709480096.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4100693767",
+    "id" : "DCA414F9",
+    "lastKnownWriteTime" : 1484069550,
+    "last_content_update" : 1484069550439,
+    "path" : "~/Development/HSLU-ML/kNN.R",
+    "project_path" : "kNN.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

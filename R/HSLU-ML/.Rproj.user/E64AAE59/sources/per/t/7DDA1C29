@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529660254568.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "436101378",
+    "id" : "7DDA1C29",
+    "lastKnownWriteTime" : 1529353272,
+    "last_content_update" : 1529353272,
+    "path" : "C:/_Data/HSLU-BDA/Unterlagen/06_22_DataScience_III/übungen/HSLU-ML/random-forest.R",
+    "project_path" : "random-forest.R",
+    "properties" : {
+        "cursorPosition" : "46,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529659511367.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2317353004",
+    "id" : "ECB5C500",
+    "lastKnownWriteTime" : 1529353322,
+    "last_content_update" : 1529353322,
+    "path" : "C:/_Data/HSLU-BDA/Unterlagen/06_22_DataScience_III/übungen/HSLU-ML/PCA.R",
+    "project_path" : "PCA.R",
+    "properties" : {
+        "cursorPosition" : "40,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

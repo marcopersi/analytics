@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529659394642.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3290397382",
+    "id" : "F33EA2A6",
+    "lastKnownWriteTime" : 1529680214,
+    "last_content_update" : 1529680214120,
+    "path" : "C:/_Data/HSLU-BDA/Unterlagen/06_22_DataScience_III/übungen/HSLU-ML/kMeans.R",
+    "project_path" : "kMeans.R",
+    "properties" : {
+        "cursorPosition" : "18,19",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

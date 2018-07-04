@@ -1,0 +1,63 @@
+---
+title: "Early Warning Signals Hypothesis"
+always_allow_html: yes
+author: "Dr. Albert Blarer"
+date: "June 8, 2018"
+output:
+  html_document: default
+  pdf_document: default # watch out for plotly and pdf output
+---
+
+<!-- webshot::install_phantomjs() -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Euromaidan protests
+
+The following Twitter activities were recorded during the Euromaidan protests in Kiev during February and March 2014. The time series (obs) represents the number of tweets per hour, collected from the public Twitter stream, filtered by the hashtags *#kiew* and *#kiev*. The remarkable activity increase on February 18, 2014 reflects the dramatic social riots in Kiev with more than hundred casualities. 
+
+The central question here is about the predictability of such events. Following the theories of early warning signals, described in <http://www.early-warning-signals.org/> certain dynamics exhibit patterns that indicate non-linear and disruptive behaviors in advance. Among the indicative patterns, we find increasing variance (or standard deviation *sd*), increasing autocorrelation (*ar1*) and changing skewness (*sk*).
+
+The following code snippets show the import of raw data and the preprocesssing. To calculate the *early warning signals (ews)* we use the R-package *earlywarnings*. To compare the different indicators easily on a common time axis we use the R-package *plotly* and its subplot-function.
+
+
+```{r load_packages, include=FALSE}
+library(plotly)
+library(earlywarnings)
+# Set the time zone at the system level
+Sys.setenv(TZ="Europe/Zurich")
+```
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, include=FALSE}
+df.data <- read.csv('../data/TweetsUkraine.csv')
+df.data$time <- as.POSIXct(as.numeric(as.character(df.data$time)),origin="1970-01-01",tz="CET")
+ews <- generic_ews(df.data[1:600,1:2], winsize=10, detrending = 'gaussian', powerspectrum = FALSE)
+ews$timeindex <- as.POSIXct(ews$timeindex, origin="1970-01-01", tz="CET")
+df.m <- merge(ews, df.data, by.x = "timeindex", by.y = "time")
+```
+
+
+```{r}
+vars <- setdiff(names(df.m), c("timeindex","kurt","cv","returnrate","densratio","acf1"))
+vars <- vars[c(4,2,1,3)] # reorder the names of the var vector
+plots <- lapply(vars, function(var) {
+  plot_ly(df.m, x = ~timeindex, y = as.formula(paste0("~", var)), name = var, colors = "Set1") %>%
+    add_lines()
+})
+```
+<center>
+```{r}
+ subplot(plots, nrows = length(plots), shareX = TRUE, titleX = FALSE)
+```
+</center>
+The time period before the first main peak in the time series (first plot above) represents the focus of this analysis. Variance, autocorrelation and skewness, all indicate an abrupt change a few hours before the demonstration starts to escalate. 
+
+This exploratory analysis relies on a single case. However, it creates an interesting hypothesis: Events such as social riots might be predictable based on their dynamics and particular features derived from the dynamics.
+
+####Note:
+
+This document is built with R Markdown from RStudio, see <http://rmarkdown.rstudio.com>.
